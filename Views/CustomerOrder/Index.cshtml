@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SklepMVC.Models.CustomerOrderData>
+
+@{
+    ViewData["Title"] = "Twoje zamówienia";
+}
+
+<div class="order">
+    @if (Model.Count() == 0)
+    {
+        <h1>Brak zamówień</h1>
+    }
+
+    else
+    {
+        int number = 1;
+        <table class="table">
+
+                <tr>
+                    <th>
+                        L.P.
+                    </th>
+                    <th>
+                        Data zamówienia
+                    </th>
+                    <th>
+                        Wartość zamówienia
+                    </th>
+                    <th>
+                        Status zamówienia
+                    </th>
+
+
+                    <th>
+                        Akcje
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @number
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderValue) zł
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+
+                        <td>
+                            <div class="buttons">
+                                <div class="details">
+                                    @Html.ActionLink("Szczegóły", "Details", new { id = item.OrderId })
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    number++;
+                }
+
+        </table>
+
+    }
+</div>

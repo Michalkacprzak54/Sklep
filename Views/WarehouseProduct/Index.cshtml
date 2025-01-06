@@ -1,0 +1,74 @@
+﻿@model IEnumerable<SklepMVC.Models.Warehouse>
+
+@{
+    ViewData["Title"] = "Stan magazynowy";
+
+    int numer = 1;
+}
+<div class="storage">
+    @if (TempData.ContainsKey("SuccessMessage"))
+    {
+        <div class="alert-success">@TempData["SuccessMessage"]</div>
+    }
+    else if (TempData.ContainsKey("ErrorMessage"))
+    {
+        <div class="alert-danger">@TempData["ErrorMessage"]</div>
+    }
+    <div class="button-free">
+        <div class="button-add">
+            @Html.ActionLink("Dodaj", "Create", new { id = Model.First().Id_product })
+        </div>
+    </div>
+    <table class="table">
+
+        <tr>
+            <th>
+                Numer
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                But
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+
+            <th>
+                Akcje
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+
+                <td>
+                    @numer
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shoe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    <div class="buttons">
+                        <div class="edit">
+                            @Html.ActionLink("Edytuj stan", "Edit", new { id = item.Id_warehouse })
+                        </div>
+                    </div>
+                </td>
+                @{
+                    numer++;
+                }
+            </tr>
+        }
+    </table>
+</div>

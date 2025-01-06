@@ -1,0 +1,1183 @@
+/*reset*/
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+/*body*/
+body {
+    font-family: Noto Sans, noto, Arial, Open Sans, Helvetica, sans-serif;
+    background-color: #fbfbfb;
+}
+.text-danger {
+    color: #DF2E38;
+    margin: 10px;
+}
+/*nav*/
+nav {
+    background-color: #fbfbfb;
+    color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #0079FF;
+}
+nav .left {
+    margin-right: 40px;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    font-size: 20px;
+    margin-right: 30px;
+}
+nav a {
+    text-decoration: none;
+    color: black;
+}
+.login-button {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #0079FF;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/*footer*/
+footer {
+    background-color: #fbfbfb;
+    color: black;
+    display: flex;
+    border-top: 1px solid #0079FF;
+    width: 100%;
+}
+footer a{
+    text-decoration: none;
+    color: #0079FF;
+}
+footer .f-left{
+    width:25%;
+}
+footer .f-mid {
+    width:50%;
+    text-align: center;
+    margin: 10px;
+}
+footer .f-right{
+    width:25%;
+    text-align: right;
+    margin: 10px;
+}
+/*client login*/
+.login-form {
+    background-color: #fbfbfb;
+    min-height: 810px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+.login-form form{
+  background-color: #fbfbfb;
+  text-align: center;
+  color: black;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid #0079FF;
+  border-radius: 10px;
+  width: 500px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-form form button{
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: #0079FF;
+  width: 120px;
+  margin: 10px;
+  height: 40px;
+  border: 1px solid #0079FF;
+}
+.login-form form input{
+  height: 35px;
+  width: 300px;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: none;
+  margin-top: 10px;
+  text-align: center;
+  border: 2px solid #0079FF;
+}
+.login-form form label{
+  padding-top: 10px;
+  font-weight: bold;
+  width: 300px;
+  text-align: left;
+}
+.login-form form h2{
+    margin: 10px;
+}
+.login-form form a{
+    text-decoration: none;
+    color: #0079FF;
+}
+/*worker login*/
+.w-login-form {
+    background-color: #fbfbfb;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.w-login-form form{
+  background-color: #fbfbfb;
+  text-align: center;
+  color: black;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid #0079FF;
+  border-radius: 10px;
+  width: 500px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.w-login-form form button{
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: #0079FF;
+  width: 120px;
+  margin: 10px;
+  height: 40px;
+  border: 1px solid #0079FF;
+}
+.w-login-form form input{
+  height: 35px;
+  width: 300px;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: none;
+  margin-top: 10px;
+  text-align: center;
+  border: 2px solid #0079FF;
+}
+.w-login-form form label{
+  padding-top: 10px;
+  font-weight: bold;
+  width: 300px;
+  text-align: left;
+}
+/*statute*/
+.statute{
+    min-height: 810px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+    font-size: 20px;
+    margin: 20px;
+}
+.statute h1{
+    color: #0079FF;
+    font-weight: bold;
+}
+.statute p{
+    margin: 5px;
+}
+/*register*/
+.register-form {
+    background-color: #fbfbfb;
+    height:810px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+.register-form form{
+  color: black;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid #0079FF;
+  border-radius: 10px;
+  width: 500px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register-form form button{
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: #0079FF;
+  width: 120px;
+  margin: 10px;
+  height: 40px;
+  border: 1px solid #0079FF;
+}
+.register-form form input{
+  height: 35px;
+  width: 300px;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: none;
+  margin-top: 10px;
+  text-align: center;
+  border: 2px solid #0079FF;
+}
+.register-form form label{
+  padding-top: 10px;
+  font-weight: bold;
+  width: 300px;
+  text-align: left;
+}
+.register-form form select {
+    margin: 5px;
+    font-size: 20px;
+    height: 43px;
+    width: 308px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #0079FF;
+    background-color: none;
+}
+.register-form form input[type=submit]{
+    height: 40px;
+    width: 400px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    margin-top: 20px;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+}
+/*worker product*/
+.worker-product{
+    min-height: 810px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+.button-free{
+    margin: 20px;
+}
+.button-free .button-add{
+    font-size: 20px;
+    border-radius: 5px;
+    border: 0px;
+    background-color: #0079FF;
+    text-align: center;
+    width: 500px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-free a{
+    text-decoration: none;
+    color: black;
+}
+.worker-product .products{
+    display: flex;
+    width: 100%;
+    
+}
+.worker-product .products .wp-form{
+    width: 20%;
+}
+.worker-product .products .wp-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid #0079FF;
+    border-radius: 10px; 
+    margin: 20px;
+    position: sticky;
+    transform: translateY(+3%);
+    top: 0;
+    font-size: 20px;
+}
+.worker-product .products .wp-form form button {
+    height: 40px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    margin-top: 20px;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+}
+.worker-product .products .wp-form form #minPrice{
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: none;
+  margin-top: 10px;
+  text-align: center;
+  border: 2px solid #0079FF;
+  margin: 5px;
+}
+.worker-product .products .wp-form form #maxPrice{
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: none;
+  margin-top: 10px;
+  text-align: center;
+  border: 2px solid #0079FF;
+  margin: 5px;
+}
+.worker-product .products .wp-form form select{
+    margin: 5px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #0079FF;
+    background-color: none;
+}
+.worker-product .products .table-full{
+    overflow-y: auto;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.worker-product .products .table-full .table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.worker-product .products .table-full .table th{
+  font-weight: bold;
+  background-color: #0079FF;
+  border-radius: 5px;
+  color: black;
+}
+.worker-product .products .table-full .table th, .table td{
+  padding: 15px;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+}
+.worker-product .products .table-full .table tr:hover {
+  background-color: #78C1F3;
+  color: black;
+  border-radius: 5px;
+}
+.worker-product .products .table-full .table a{
+  text-decoration: none;
+  color: black;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons div{
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.buttons .edit{
+    padding: 4px 10px;
+    background-color: #FFB534;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons .edit a{
+    text-decoration: none;
+    color: black;
+}
+.buttons .details{
+    padding: 4px 10px;
+    background-color: #0079FF;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons .delete{
+    padding: 4px 10px;
+    background-color: #DF2E38;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*create, edit  product*/
+.create{
+    min-height:810px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+.create form{
+  color: black;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid #0079FF;
+  border-radius: 10px;
+  width: 500px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create form input {
+    height: 35px;
+    width: 300px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: none;
+    margin-top: 10px;
+    text-align: center;
+    border: 2px solid #0079FF;
+}
+.create form label {
+    padding-top: 10px;
+    font-weight: bold;
+    width: 300px;
+    text-align: left;
+}
+.create form select {
+    margin: 5px;
+    font-size: 20px;
+    height: 43px;
+    width: 308px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #0079FF;
+    background-color: none;
+}
+.create textarea {
+    height: 35px;
+    width: 300px;
+    height: 100px;
+    border-radius: 5px;
+    background-color: none;
+    margin-top: 10px;
+    text-align: center;
+    border: 2px solid #0079FF;
+}
+.create form input[type=submit] {
+    height: 40px;
+    width: 400px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    margin-top: 20px;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+}
+/*produkt details worker*/
+.show-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+    min-height: 810px;
+    font-size: 20px;
+}
+.show-details .product_details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 800px;
+    border: 2px solid #0079FF;
+    border-radius: 5px;
+}
+.show-details .product_details img{
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+    border-radius: 5px;
+}
+.show-details .product_details .text{
+    margin: 10px;
+}
+/*worker order data*/
+.data {
+    min-height: 810px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+.find {
+    border: 2px solid #0079FF;
+    border-radius: 10px;
+    background-color: #fbfbfb;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+.find form select {
+    margin: 5px;
+    font-size: 20px;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #0079FF;
+    background-color: none;
+}
+.find form button {
+    height: 30px;
+    margin:5px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+}
+.data .table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.data .table th{
+  font-weight: bold;
+  background-color: #0079FF;
+  border-radius: 5px;
+  color: black;
+}
+.data .table th, .table td{
+  padding: 15px;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+}
+.data .table tr:hover {
+  background-color: #78C1F3;
+  color: black;
+  border-radius: 5px;
+}
+.data .table a{
+  text-decoration: none;
+  color: black;
+}
+.decision{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.decision button{
+    margin: 5px;
+    font-size: 20px;
+}
+.decision .green {
+    border: 2px solid #65B741;
+    border-radius: 5px;
+    background-color: #65B741;
+}
+.decision .red{
+    border: 2px solid #DF2E38;
+    border-radius: 5px;
+    background-color: #DF2E38;
+}
+/*warehouse product*/
+.alert-success{
+    border: 2px solid #65B741;
+    border-radius: 5px;
+    color: #65B741;
+    margin: 10px;
+    text-align: center;
+    padding: 10px;
+    width: 50%;
+}
+.alert-danger {
+    border: 2px solid #DF2E38;
+    border-radius: 5px;
+    color: #DF2E38;
+    margin: 10px;
+    text-align: center;
+    padding: 10px;
+    width: 50%;
+}
+.storage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height:810px;
+    margin:20px;
+}
+.storage .table{
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.storage .table th{
+  font-weight: bold;
+  background-color: #0079FF;
+  border-radius: 5px;
+  color: black;
+}
+.storage .table th, .table td{
+  padding: 15px;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+}
+.storage .table tr:hover {
+  background-color: #78C1F3;
+  color: black;
+  border-radius: 5px;
+}
+.storage .table a{
+  text-decoration: none;
+  color: black;
+}
+.edit-quantity form {
+    border: 2px solid #0079FF;
+    border-radius: 10px;
+    background-color: #fbfbfb;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+.edit-quantity form input{
+    margin: 5px;
+    font-size: 20px;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #0079FF;
+    background-color: none;
+ }
+.edit-quantity form select{
+    margin: 5px;
+    font-size: 20px;
+    height: 36px;
+    width: 208px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #0079FF;
+    background-color: none;
+ }
+.edit-quantity form input[type=submit] {
+    height: 36px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+    margin: 5px;
+}
+/*product*/
+.client-product {
+    min-height: 810px;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    font-size: 20px;
+}
+.client-product .find-client{
+    width: 20%;
+}
+.client-product .find-client form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid #0079FF;
+    border-radius: 10px; 
+    margin: 20px;
+    position: sticky;
+    top: 0;
+    font-size: 20px;
+    transform: translateY(+3%);
+}
+.client-product .find-client form button{
+    height: 40px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    margin-top: 20px;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+}
+.client-product .find-client form #minPrice{
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: none;
+  margin-top: 10px;
+  text-align: center;
+  border: 2px solid #0079FF;
+  margin: 5px;
+}
+.client-product .find-client form #maxPrice{
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: none;
+  margin-top: 10px;
+  text-align: center;
+  border: 2px solid #0079FF;
+  margin: 5px;
+}
+.products-client{
+    overflow-y: auto;
+    width: 80%; 
+    text-align: center;
+}
+.products-client .produkty{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    justify-content: center;
+}
+.products-client .produkty .produkt{
+    margin: 20px;
+    border: 2px solid #0079FF;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+.products-client .produkty .produkt img{
+    width: 400px;
+    height: 400px;
+    border-radius: 5px;
+}
+.products-client .produkty .produkt .show-d{
+    padding: 10px 20px;
+    background-color: #0079FF;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+.products-client .produkty .produkt .show-d a{
+    color: black;
+    text-decoration: none;
+}
+/*product details*/
+.product-details-full{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 810px;
+    margin: 16px;
+}
+.product-details-full .product-details{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.product-details-full .product-details div{
+    margin: 20px;
+}
+.product-details-full .product-details img{
+    width: 600px;
+    height: 600px;
+    border-radius: 10px;
+}
+.product-details-full .product-details .info form select{
+    font-size: 20px;
+    margin-right: 5px;
+    height: 36px;
+    width: 208px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #0079FF;
+    background-color: none;
+}
+.product-details-full .product-details .info form button{
+    height: 36px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+}
+.product-details-full .komentarze h2{
+    text-align: center;
+    margin: 10px;
+}
+.product-details-full .komentarze form{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+.product-details-full .komentarze form label{
+    margin: 5px;
+    width: 500px;
+    text-align: left;
+}
+.product-details-full .komentarze form input{
+    border: 2px solid #0079FF;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 500px;
+}
+.product-details-full .komentarze form textarea{
+    border: 2px solid #0079FF;
+    border-radius: 5px;
+    width: 500px;
+    height: 300px;
+}
+.product-details-full .komentarze form button{
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+}
+.product-details-full .comment{
+    margin: 10px;
+    border-bottom: 2px solid black;
+    text-align: left;
+}
+.product-details-full .comment a{
+    text-decoration: none;
+    color: black;
+}
+.product-details-full .comment p{
+    margin: 5px;
+}
+.product-details-full .comment h3{
+    margin: 5px;
+}
+.product-details-full .comment h4{
+    margin: 5px;
+}
+.buttons .detail {
+    padding: 7px 15px;
+    background-color: #0079FF;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+/*cart*/
+.cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    min-height:810px;
+    margin: 16px;
+}
+.cart .table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.cart .table th{
+  font-weight: bold;
+  background-color: #0079FF;
+  border-radius: 5px;
+  color: black;
+}
+.cart .table th, .table td{
+  padding: 15px;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+}
+.cart .table tr:hover {
+  background-color: #78C1F3;
+  color: black;
+  border-radius: 5px;
+}
+.cart .table a{
+  text-decoration: none;
+  color: black;
+}
+.cart .table img{
+    width: 120px;
+    height: 120px;
+}
+/*checkout*/
+.checkout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 810px;
+    margin: 16px;
+}
+.checkout form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid #0079FF;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 20px;
+}
+.checkout form label{
+  padding-top: 10px;
+  font-weight: bold;
+  width: 300px;
+  text-align: left;
+}
+.checkout form .checkbox{
+    display: flex;
+    margin: 10px;
+    height: 23px;
+}
+.checkout form .checkbox label{
+    width: 110px;
+    padding-top: 0px;
+}
+.checkout form .checkbox input{
+    width: 13px;
+    height: 13px;
+}
+.checkout form input{
+    width: 300px;
+    border: 2px solid #0079FF;
+    border-radius: 5px;
+    height: 30px;
+}
+.checkout form select{
+    width: 308px;
+    border: 2px solid #0079FF;
+    border-radius: 5px;
+    height: 36px;
+}
+.checkout form input[type=submit] {
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    margin-top: 20px;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+}
+.checkout form .bussines{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/*confirm order*/
+.full{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 810px;
+    margin: 16px;
+}
+/*comment edit*/
+.edit-com{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 810px;
+    margin: 16px;
+}
+.edit-com form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid #0079FF;
+    border-radius: 5px;
+    padding: 20px;
+}
+.edit-com form label {
+    padding-top: 10px;
+    font-weight: bold;
+    width: 500px;
+    text-align: left;
+}
+.edit-com form input{
+    width: 500px;
+    border: 2px solid #0079FF;
+    border-radius: 5px;
+    height: 30px;
+}
+.edit-com form textarea{
+    width: 500px;
+    border: 2px solid #0079FF;
+    border-radius: 5px;
+    height: 200px;
+}
+.edit-com form input[type=submit] {
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: #0079FF;
+    margin-top: 20px;
+    text-align: center;
+    border: 2px solid #0079FF;
+    font-size: 20px;
+}
+/*customer order*/
+.order {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 810px;
+    margin: 16px;
+}
+.order .table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.order .table th{
+  font-weight: bold;
+  background-color: #0079FF;
+  border-radius: 5px;
+  color: black;
+}
+.order .table th, .table td{
+  padding: 15px;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+}
+.order .table tr:hover {
+  background-color: #78C1F3;
+  color: black;
+  border-radius: 5px;
+}
+.order .table a{
+  text-decoration: none;
+  color: black;
+}
+/*customer order details*/
+.order-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 810px;
+    margin: 16px;
+}
+.order-details h1{
+    margin: 5px;
+}
+.order-details h2{
+    margin: 5px;
+}
+.order-details h3{
+    margin: 5px;
+}
+.order-details p{
+    margin: 5px;
+}
+.order-details .dane{
+    width: 100%;
+}
+.order-details .produkty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.order-details .produkty .produkt{
+    border: 2px solid #0079FF; 
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+}
+.order-details .produkty .produkt img{
+    border-radius: 5px;
+    width: 400px;
+    height: 400px;
+}
+/*home*/
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 810px;
+    margin: 16px;
+    flex-direction: column;
+}
+.main a{
+    color: black;
+    text-decoration: none;
+}
+.main h2{
+    margin: 5px;
+}
+.best, .new, .last{
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.best-product {
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #0079FF;
+    border-radius: 10px;
+}
+.best-product img{
+    width: 400px;
+    height: 400px;
+    border-radius: 5px;
+}
+
+.best-product a{
+    text-decoration: none;
+    color: black;
+}

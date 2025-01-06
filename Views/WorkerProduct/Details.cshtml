@@ -1,0 +1,55 @@
+﻿@model SklepMVC.Models.ProductDetails
+
+@{
+    ViewData["Title"] = "Szczegóły";
+}
+
+
+<div class="show-details">
+    <div class="product_details">
+        @if (Model.ProductViewModel.First().Photo != null)
+        {
+            <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProductViewModel.First().Photo)" alt="Zdjęcie" />
+        }
+        else
+        {
+            <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+        }
+        <div class="text">
+            <h3> @Html.DisplayNameFor(model => model.ProductViewModel.First().Brand):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Brand)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Model):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Model)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Color):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Color)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Description):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Description)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().ProductCode):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().ProductCode)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Price):</h3>
+            <p>@String.Format("{0:F2}", Decimal.Parse(Model.ProductViewModel.First().Price)) zł</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().IsForKids):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().IsForKids)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Sex):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Sex)</p>
+        </div>
+        <div class="button-free">
+            <div class="button-add">
+                @Html.ActionLink("Zobacz ilość", "Index", "WarehouseProduct", new { id = Model.ProductViewModel.First().Id_product }, new { @class = "btn btn-primary btn-block" })
+            </div>
+        </div>
+    </div>
+
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>

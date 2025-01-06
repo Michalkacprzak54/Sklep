@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SklepMVC</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SklepMVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+    @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieWorkerLoginID"] != null)
+    {
+
+
+        <header>
+            <nav>
+                <div class="left">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="WorkerProduct" asp-action="Index">Buty</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="WorkerOrderData" asp-action="Index">Zamówienia</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+                    @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieWorkerLoginID"] != null)
+                    {
+                        <a class="login-button" asp-controller="WorkerLogin" asp-action="Logout">Wyloguj się</a>
+                    }
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    }
+    else
+    {
+        <header>
+            <nav>
+                    <div class="left">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Strona główna</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Buty</a>
+                            </li>
+                            @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"] != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="CustomerOrder" asp-action="Index">Zamówienia</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Koszyk</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right">
+                @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"] != null)
+                {
+                    <a class="login-button" asp-controller="Login" asp-action="Logout">Wyloguj się</a>
+                }
+                else
+                {
+                    <a class="login-button" asp-controller="Login" asp-action="Index">Zaloguj się</a>
+                }
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    }
+
+
+    <footer>
+        <div class="f-left"></div>
+        <div class="f-mid">
+            &copy; 2023
+        </div>
+        <div class="f-right">
+            <a asp-area="" asp-controller="Home" asp-action="Statute">Regulamin</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

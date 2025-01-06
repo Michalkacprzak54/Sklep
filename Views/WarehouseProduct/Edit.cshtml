@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SklepMVC.Models.Warehouse>
+
+@{
+    ViewData["Title"] = "Edytuj ilość";
+}
+<div class="storage">
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+
+            <th>
+                But
+            </th>
+            <th>
+                Obecny stan
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shoe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div class="edit-quantity">
+        <form asp-action="Edit">
+            <input asp-for="First().Id_product" class="form-control" hidden />
+
+            <label asp-for="First().Quantity" class="control-label"></label>
+            <input asp-for="First().Quantity" class="form-control" />
+            <span asp-validation-for="First().Quantity" class="text-danger"></span>
+            <input type="submit" value="Zapisz" class="btn btn-primary" />
+        </form>
+    </div>
+
+    <div class="button-free">
+        <div class="button-add">
+            @Html.ActionLink("Powrót", "Index", new { id = Model.First().Id_product })
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

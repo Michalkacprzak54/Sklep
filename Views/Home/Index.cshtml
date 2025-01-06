@@ -1,0 +1,198 @@
+﻿@model IEnumerable<SklepMVC.Models.Product>
+@{
+    ViewData["Title"] = "Sklep";
+}
+
+<div class="main">
+    <div class="best">
+        <div class="best-product">
+            <h2>Bestseller wśród kobiet</h2>
+            @{
+                int productIdWoman = 1;
+                var selectedProductWoman = Model.SingleOrDefault(p => p.Id_product == productIdWoman);
+                <div>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@selectedProductWoman.Id_product">
+                    @if (selectedProductWoman.Photo != null)
+                    {
+                        <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(selectedProductWoman.Photo)" alt="Zdjęcie" />
+
+                    }
+                    else
+                    {
+                        <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                    }
+                    <p>@selectedProductWoman.Brand @selectedProductWoman.Model</p>
+                    <p>@selectedProductWoman.Color</p>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="best-product">
+            <h2>Bestseller wśród meżczyzn</h2>
+            @{
+                int productIdMan = 2;
+                var selectedProductMan = Model.SingleOrDefault(p => p.Id_product == productIdMan);
+                <div>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@selectedProductMan.Id_product">
+                    @if (selectedProductMan.Photo != null)
+                    {
+                        <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(selectedProductMan.Photo)" alt="Zdjęcie" />
+
+                    }
+                    else
+                    {
+                        <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                    }
+                    <p>@selectedProductMan.Brand @selectedProductMan.Model</p>
+                    <p>@selectedProductMan.Color</p>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="best-product">
+            <h2>Bestseller wśród dzieci</h2>
+            @{
+                int productIdKids = 6;
+                var selectedProductKids = Model.SingleOrDefault(p => p.Id_product == productIdKids);
+                <div>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@selectedProductKids.Id_product">
+                    @if (selectedProductKids.Photo != null)
+                    {
+                        <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(selectedProductKids.Photo)" alt="Zdjęcie" />
+
+                    }
+                    else
+                    {
+                        <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                    }
+                    <p>@selectedProductKids.Brand @selectedProductKids.Model</p>
+                    <p>@selectedProductKids.Color</p>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+    <h2>Nowości</h2>
+    <div class="new">
+            @{
+                int newProductId1 = 22;
+                var selectedNewProduct1 = Model.SingleOrDefault(p => p.Id_product == newProductId1);
+                <div class="best-product">
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@selectedNewProduct1.Id_product">
+                    @if (selectedNewProduct1.Photo != null)
+                    {
+                        <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(selectedNewProduct1.Photo)" alt="Zdjęcie" />
+
+                    }
+                    else
+                    {
+                        <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                    }
+                    <p>@selectedNewProduct1.Brand @selectedNewProduct1.Model</p>
+                    <p>@selectedNewProduct1.Color</p>
+                </a>
+                </div>
+            }
+            @{
+                int newProductId2 = 17;
+            var selectedNewProduct2 = Model.SingleOrDefault(p => p.Id_product == newProductId2);
+                <div class="best-product">
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@selectedNewProduct2.Id_product">
+                    @if (selectedNewProduct2.Photo != null)
+                    {
+                        <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(selectedNewProduct2.Photo)" alt="Zdjęcie" />
+
+                    }
+                    else
+                    {
+                        <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                    }
+                    <p>@selectedNewProduct2.Brand @selectedNewProduct2.Model</p>
+                    <p>@selectedNewProduct2.Color</p>
+                </a>
+                </div>
+            }
+            @{
+                int newProductId3 = 15;
+            var selectedNewProduct3 = Model.SingleOrDefault(p => p.Id_product == newProductId3);
+                <div class="best-product">
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@selectedNewProduct3.Id_product">
+                    @if (selectedNewProduct3.Photo != null)
+                    {
+                        <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(selectedNewProduct3.Photo)" alt="Zdjęcie" />
+
+                    }
+                    else
+                    {
+                        <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                    }
+                    <p>@selectedNewProduct3.Brand @selectedNewProduct3.Model</p>
+                    <p>@selectedNewProduct3.Color</p>
+                </a>
+                </div>
+            }
+    </div>
+
+    <h2>Ostatnie sztuki</h2>
+    <div class="last">
+
+        @{
+            int lastProduct1 = 8;
+            var selectedLast1 = Model.SingleOrDefault(p => p.Id_product == lastProduct1);
+            <div class="best-product">
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@selectedLast1.Id_product">
+                @if (selectedLast1.Photo != null)
+                {
+                    <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(selectedLast1.Photo)" alt="Zdjęcie" />
+
+                }
+                else
+                {
+                    <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                }
+                <p>@selectedLast1.Brand @selectedLast1.Model</p>
+                <p>@selectedLast1.Color</p>
+            </a>
+            </div>
+        }
+        @{
+            int lastProduct2 = 10;
+            var selectedLast2 = Model.SingleOrDefault(p => p.Id_product == lastProduct2);
+            <div class="best-product">
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@selectedLast2.Id_product">
+                @if (selectedLast2.Photo != null)
+                {
+                    <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(selectedLast2.Photo)" alt="Zdjęcie" />
+
+                }
+                else
+                {
+                    <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                }
+                <p>@selectedLast2.Brand @selectedLast2.Model</p>
+                <p>@selectedLast2.Color</p>
+            </a>
+            </div>
+        }
+        @{
+            int lastProduct3 = 12;
+            var selectedLast3 = Model.SingleOrDefault(p => p.Id_product == lastProduct3);
+            <div class="best-product">
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@selectedLast3.Id_product">
+                @if (selectedLast3.Photo != null)
+                {
+                    <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(selectedLast3.Photo)" alt="Zdjęcie" />
+
+                }
+                else
+                {
+                    <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                }
+                <p>@selectedLast3.Brand @selectedLast3.Model</p>
+                <p>@selectedLast3.Color</p>
+            </a>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<SklepMVC.Models.CartProduct>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="cart">
+    @if (ViewBag.ProductsCount == 0)
+    {
+        <h2>Brak produktów w koszyku</h2>
+        <div class="button-free">
+            <div class="button-add">
+                <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Zobacz produkty!</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Brand)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Size)
+                </th>
+                <th>
+                    Akcje
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (item.Photo != null)
+                    {
+                        <td>
+                            <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Photo)" alt="Zdjęcie" />
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Color)
+                    </td>
+                    <td>
+                        @string.Format("{0:F2}", (item.Price))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </td>
+                    <td>
+                        <div class="buttons">
+                            <div class="details">
+                                @Html.ActionLink("Szczegóły", "Details", "Product", new { id = item.Id_product })
+                            </div>
+                            <div class="delete">
+                                @Html.ActionLink("Usuń", "DeleteFromCart", "Cart", new { id_warehouse = item.Id_warehouse })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+            }
+        </table>
+
+        <div class="suma-koszyka"><h1>@string.Format("{0:F2}", @ViewBag.Sum) zł</h1></div>
+        @if (@ViewBag.ProductsCount != 0)
+        {
+            <div class="button-free">
+                <div class="button-add">
+                    <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary">Zakończ Transakcję</a>
+                </div>
+            </div>
+        }
+
+    }
+</div>

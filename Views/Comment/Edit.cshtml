@@ -1,0 +1,48 @@
+﻿@model SklepMVC.Models.Comment
+
+@{
+    ViewData["Title"] = "Edytuj Komentarz";
+}
+<div class="edit-com">
+    <div class="com-form">
+
+        <form asp-controller="Comment" asp-action="Edit" method="POST">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id_comment" class="form-control" />
+
+            <input type="hidden" asp-for="Id_client_login" class="form-control" />
+
+            <input type="hidden" asp-for="Id_client" class="form-control" />
+
+            <input type="hidden" asp-for="Id_product" class="form-control" />
+
+
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+
+                <label asp-for="Rate" class="control-label"></label>
+                <input asp-for="Rate" class="form-control" />
+                <span asp-validation-for="Rate" class="text-danger"></span>
+
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
+
+        </form>
+
+    </div>
+
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Details" asp-controller="Product" asp-route-id="@Model.Id_product">Anuluj</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

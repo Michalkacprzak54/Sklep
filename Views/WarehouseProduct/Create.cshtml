@@ -1,0 +1,57 @@
+﻿@using SklepMVC.Models
+@model SklepMVC.Models.WarehouseProduct
+
+
+@{
+    ViewData["Title"] = "Zadządzanie stanami magazynowymi";
+}
+<div class="storage">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductViewModel.FirstOrDefault().Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductViewModel.FirstOrDefault().Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductViewModel.FirstOrDefault().Color)
+            </th>
+        </tr>
+        <td>
+            @Html.DisplayFor(model => model.ProductViewModel.FirstOrDefault().Brand)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ProductViewModel.FirstOrDefault().Model)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ProductViewModel.FirstOrDefault().Color)
+        </td>
+
+    </table>
+    <div class="edit-quantity">
+        <form asp-action="Create">
+
+            <label asp-for="SizesViewModel.First().size" class="control-label"></label>
+            @Html.DropDownListFor(model => model.SizesViewModel.First().size, new SelectList(Model.SizesViewModel, "size", "sizeAndNumber"), "Wybierz rozmiar", new { @class = "form-control" })
+            <span asp-validation-for="SizesViewModel.First().size" class="text-danger"></span>
+
+            <label asp-for="WarehouseViewModel.First().Quantity" class="control-label"></label>
+            <input asp-for="WarehouseViewModel.First().Quantity" class="form-control" />
+            <span asp-validation-for="WarehouseViewModel.First().Quantity" class="text-danger"></span>
+
+            <input type="submit" value="Dodaj" class="btn btn-primary" />
+        </form>
+    </div>
+
+    <div class="button-free">
+        <div class="button-add">
+            @Html.ActionLink("Powrót", "Index", new { id = Model.ProductViewModel.First().Id_product })
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

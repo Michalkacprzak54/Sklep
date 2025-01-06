@@ -1,0 +1,206 @@
+﻿@model IEnumerable<SklepMVC.Models.Product>
+
+@{
+    ViewData["Title"] = "Produkty pracownik";
+    int numer = 1;
+}
+
+<div class="worker-product">
+
+    @if (TempData["ProductSuccess"] != null)
+    {
+        <div class="alert-success">
+            @TempData["ProductSuccess"]
+        </div>
+    }
+
+    @if (TempData["ProductError"] != null)
+    {
+        <div class="alert-danger">
+            @TempData["ProductError"]
+        </div>
+    }
+
+    <div class="button-free">
+        <div class="button-add">
+            <p>
+                <a asp-action="Create">Nowy produkt</a>
+            </p>
+        </div>
+    </div>
+    <div class="products">
+        <div class="wp-form">
+            @using (Html.BeginForm("Index", "WorkerProduct", FormMethod.Get))
+            {
+                <label class="control-label">Dostępność:</label>
+                @Html.DropDownList("czyDostepny", new SelectList(new List<SelectListItem>
+            {
+            new SelectListItem { Text = "Wszystkie", Value = ""},
+            new SelectListItem { Text = "Dostępne", Value = "Tak"},
+            new SelectListItem { Text = "Nie dostępne", Value = "Nie"}
+            }, "Value", "Text"), new { @class = "avaible" })
+
+                <label class="control-label">Wybierz płeć:</label>
+
+                <div>
+                    <input type="checkbox" id="plec_Mezczyzna" name="plec" value="Mezczyzna" class="form-check-input" @(ViewBag.SelectedPlec != null && ViewBag.SelectedPlec.Contains("Mezczyzna") ? "checked" : "") />
+                    <label for="plec_Mezczyzna" class="form-check-label">Mężczyzna</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="plec_Kobieta" name="plec" value="Kobieta" class="form-check-input" @(ViewBag.SelectedPlec != null && ViewBag.SelectedPlec.Contains("Kobieta") ? "checked" : "") />
+                    <label for="plec_Kobieta" class="form-check-label">Kobieta</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="plec_Unisex" name="plec" value="Unisex" class="form-check-input" @(ViewBag.SelectedPlec != null && ViewBag.SelectedPlec.Contains("Unisex") ? "checked" : "") />
+                    <label for="plec_Unisex" class="form-check-label">Unisex</label>
+                </div>
+                <label class="control-label">Czy dla dzieci:</label>
+
+                <label>
+                    <input type="radio" name="czyDlaDzieci" value="Tak" @(ViewBag.CzyDlaDzieci != null && ViewBag.CzyDlaDzieci.ToString() == "Tak" ? "checked" : "") />
+                    Tak
+                </label>
+                <label>
+                    <input type="radio" name="czyDlaDzieci" value="Nie" @(ViewBag.CzyDlaDzieci != null && ViewBag.CzyDlaDzieci.ToString() == "Nie" ? "checked" : "") />
+                    Nie
+                </label>
+
+                <label for="minPrice">Minimalna cena:</label>
+                <input type="number" name="minPrice" id="minPrice" pattern="\d+" title="Wprowadź poprawny format ceny. Np.: 999999" min="0" oninput="validateMinMaxPrices()" />
+
+                <label for="maxPrice">Maksymalna cena:</label>
+                <input type="number" name="maxPrice" id="maxPrice" pattern="\d+" title="Wprowadź poprawny format ceny. Np.: 999999" min="0" oninput="validateMinMaxPrices()" />
+
+
+                <span id="priceValidationMessage" style="color: red;"></span>
+
+
+                <label class="control-label">Wybierz marki:</label>
+                @foreach (var marka in ViewBag.availableBrands)
+                {
+
+                    <div>
+                        <input type="checkbox" id="@($"marka_{marka}")" name="marka" value="@marka" class="form-check-input" @(ViewBag.SelectedBrand != null && ViewBag.SelectedBrand.Contains(marka) ? "checked" : "") />
+                        <label class="form-check-label" for="@($"marka_{marka}")">@marka</label>
+                    </div>
+                }
+
+
+                <button type="submit" id="filtrujButton" class="btn btn-primary">Filtruj</button>
+            }
+        </div>
+
+
+
+
+        <div class="table-full">
+            @if (Model.Any())
+            {
+                <table class="table">
+
+                    <tr>
+                        <th>
+                            L.P.
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Brand)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Model)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Color)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductCode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.isAvailable)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsForKids)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Sex)
+                        </th>
+                        <th>
+                            Akcje
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @numer
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Brand)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Model)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Color)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductCode)
+                            </td>
+                            <td>
+                                @string.Format("{0:F2}", double.Parse(item.Price))
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.isAvailable)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsForKids)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sex)
+                            </td>
+                            <td>
+                                <div class="buttons">
+                                    <div class="edit">
+                                        @Html.ActionLink("Edytuj", "Edit", new { id = item.Id_product })
+                                    </div>
+                                    <div class="details">
+                                        @Html.ActionLink("Szczegóły", "Details", new { id = item.Id_product })
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        numer++;
+                    }
+
+                </table>
+
+            }
+
+            else
+            {
+                <h1>Brak produktów</h1>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    function validateMinMaxPrices() {
+        var minPrice = parseInt(document.getElementById("minPrice").value) || 0;
+        var maxPrice = document.getElementById("maxPrice").value.trim() === "" ? Infinity : parseInt(document.getElementById("maxPrice").value) || 0;
+
+        var validationMessage = document.getElementById("priceValidationMessage");
+
+        if (maxPrice !== Infinity && maxPrice < minPrice) {
+            validationMessage.innerText = "Maksymalna cena nie może być mniejsza niż minimalna cena.";
+            document.getElementById("filtrujButton").disabled = true;
+        } else {
+            validationMessage.innerText = "";
+            document.getElementById("filtrujButton").disabled = false;
+        }
+    }
+
+</script>

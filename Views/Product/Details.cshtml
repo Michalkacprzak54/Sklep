@@ -1,0 +1,130 @@
+﻿@model SklepMVC.Models.ProductDetails
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Szczegóły";
+}
+
+
+<div class="product-details-full">
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Index">Powrót</a>
+        </div>
+    </div>
+    <div class="product-details">
+        <div class="photo">
+            @if (Model.ProductViewModel.First().Photo != null)
+            {
+                <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProductViewModel.First().Photo)" alt="Zdjęcie" />
+
+            }
+            else
+            {
+                <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+            }
+        </div>
+        <div class="info">
+            <h3> @Html.DisplayNameFor(model => model.ProductViewModel.First().Brand):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Brand)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Model):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Model)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Color):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Color)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Description):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Description)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().ProductCode):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().ProductCode)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Price):</h3>
+            <p>@String.Format("{0:F2}", Decimal.Parse(Model.ProductViewModel.First().Price)) zł</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().IsForKids):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().IsForKids)</p>
+
+            <h3>@Html.DisplayNameFor(model => model.ProductViewModel.First().Sex):</h3>
+            <p>@Html.DisplayFor(model => model.ProductViewModel.First().Sex)</p>
+
+            @if (Model.WarehouseViewModel != null && Model.WarehouseViewModel.Any())
+            {
+                <div>
+
+                    <form class="formularz_zakupowy" enctype="multipart/form-data" asp-controller="Cart" asp-action="AddToCart" method="POST">
+                        <input name="id" type="hidden" asp-for="@Model.WarehouseViewModel.First().Id_product" />
+
+                        <div>
+                            @Html.DropDownListFor(model => model.WarehouseViewModel.First().Size, new SelectList(Model.WarehouseViewModel, "Id_warehouse", "Size"), "Rozmiary")
+                            <button type="submit" class="btn btn-primary">Dodaj do koszyka</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            }
+            else
+            {
+                <h1>Brak rozmiarów</h1>
+            }
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="komentarze">
+        <h2>Komentarze</h2>
+        @if (@ViewBag.Comments != "")
+        {
+            <p>@ViewBag.Comments</p>
+        }
+        @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"] != null)
+        {
+            <form class="formularz_zakupowy" enctype="multipart/form-data" asp-controller="Comment" asp-action="Add" method="POST">
+                <input name="Id_product" type="hidden" asp-for="CreateCommentViewModel.Id_product" value="@Model.ProductViewModel.First().Id_product" />
+                <input name="Id_client" type="hidden" asp-for="CreateCommentViewModel.Id_client" value="@HttpContextAccessor.HttpContext.Request.Cookies["CookieUserID"]" />
+
+                <label asp-for="@Model.CreateCommentViewModel.Title">Tytuł</label>
+                <input asp-for="@Model.CreateCommentViewModel.Title" name="Title" />
+
+                <label asp-for="@Model.CreateCommentViewModel.Description">Opis</label>
+                <textarea asp-for="@Model.CreateCommentViewModel.Description" name="Description" class="opis"></textarea>
+
+                <label asp-for="@Model.CreateCommentViewModel.Rate">Ocena</label>
+                <input asp-for="@Model.CreateCommentViewModel.Rate" name="Rate" />
+
+                <button type="submit" class="btn btn-primary">Dodaj Komentarz</button>
+            </form>
+
+        }
+        @foreach (var item in Model.CommentViewModel)
+        {
+            <div class="comment">
+                <h3>@item.Name</h3>
+                <p>@item.Added_date.ToString("yyyy-MM-dd")</p>
+                <h4>@item.Title</h4>
+                <p>@item.Description</p>
+                <p>@item.Rate</p>
+
+                @if (Convert.ToInt32(@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"]) == item.Id_client_login)
+                {
+                    <div class="buttons">
+                        <div class="detail">
+                            <a class="btn btn-primary" asp-controller="Comment" asp-action="Edit" asp-route-id="@item.Id_comment">Edytuj komentarz</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+</div>
+
+
+
+

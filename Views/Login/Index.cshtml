@@ -1,0 +1,31 @@
+﻿@model SklepMVC.Models.User
+
+@{
+    ViewData["Title"] = "Logowanie";
+}
+
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+<div class="login-form">
+    <form enctype="multipart/form-data" asp-controller="Login" asp-action="Index" method="post">
+        <label asp-for="@Model.email">E-mail</label>
+        <input asp-for="@Model.email">
+        <span class="field-validation-valid text-danger" asp-validation-for="@Model.email"></span>
+
+
+        <label asp-for="@Model.password">Hasło</label>
+        <input asp-for="@Model.password">
+        <span class="field-validation-valid text-danger" asp-validation-for="@Model.password"></span>
+
+        <button type="submit">Zaloguj się</button>
+        <h2>Nie masz konta?</h2>
+        <a asp-action="Index" asp-controller="Register">Załóż konto </a>
+
+        @if (ViewData["Message"] != null)
+        {
+            string data = (string)ViewData["Message"];
+            <p>@data</p>
+        }
+    </form>
+</div>

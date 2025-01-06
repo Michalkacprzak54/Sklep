@@ -1,0 +1,125 @@
+﻿@model SklepMVC.Models.Checkout
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Dane do wysyłki";
+}
+
+<div class="checkout">
+    <form asp-action="Index">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"] == null)
+        {
+
+            <label asp-for="Customer.FirstName" class="control-label"></label>
+            <input asp-for="Customer.FirstName" class="form-control" />
+            <span asp-validation-for="Customer.FirstName" class="text-danger"></span>
+
+            <label asp-for="Customer.LastName" class="control-label"></label>
+            <input asp-for="Customer.LastName" class="form-control" />
+            <span asp-validation-for="Customer.LastName" class="text-danger"></span>
+
+            <label asp-for="Customer.PhoneNumber" class="control-label"></label>
+            <input asp-for="Customer.PhoneNumber" class="form-control" />
+            <span asp-validation-for="Customer.PhoneNumber" class="text-danger"></span>
+
+            <label asp-for="Customer.IsWoman">Płeć:</label>
+            <select asp-for="Customer.IsWoman">
+                <option value="true" selected="selected">Kobieta</option>
+                <option value="false">Mężczyzna</option>
+            </select>
+            <span asp-validation-for="Customer.IsWoman" class="text-danger"></span>
+
+            <label asp-for="Customer.Email" class="control-label"></label>
+            <input asp-for="Customer.Email" class="form-control" />
+            <span asp-validation-for="Customer.Email" class="text-danger"></span>
+
+
+        }
+
+        <label asp-for="Order.City" class="control-label"></label>
+        <input asp-for="Order.City" class="form-control" />
+        <span asp-validation-for="Order.City" class="text-danger"></span>
+
+        <label asp-for="Order.ZipCode" class="control-label"></label>
+        <input asp-for="Order.ZipCode" class="form-control" />
+        <span asp-validation-for="Order.ZipCode" class="text-danger"></span>
+
+        <label asp-for="Order.Street" class="control-label"></label>
+        <input asp-for="Order.Street" class="form-control" />
+        <span asp-validation-for="Order.Street" class="text-danger"></span>
+
+        <label asp-for="Order.HouseNumber" class="control-label"></label>
+        <input asp-for="Order.HouseNumber" class="form-control" />
+        <span asp-validation-for="Order.HouseNumber" class="text-danger"></span>
+
+        <label asp-for="Order.ApartmentNumber" class="control-label"></label>
+        <input asp-for="Order.ApartmentNumber" class="form-control" />
+        <span asp-validation-for="Order.ApartmentNumber" class="text-danger"></span>
+        <div class="checkbox">
+        <label for="bussinesCheckbox">Dane firmy</label>
+        <input asp-for="bussinesCheckbox" type="checkbox">
+        <span></span>
+        </div>
+        <div class="bussines" style="display: none;">
+
+            <label asp-for="Bussines.Name" class="control-label"></label>
+            <input asp-for="Bussines.Name" class="form-control" />
+            <span asp-validation-for="Bussines.Name" class="text-danger"></span>
+
+            <label asp-for="Bussines.City" class="control-label"></label>
+            <input asp-for="Bussines.City" class="form-control" />
+            <span asp-validation-for="Bussines.City" class="text-danger"></span>
+
+            <label asp-for="Bussines.ZipCode" class="control-label"></label>
+            <input asp-for="Bussines.ZipCode" class="form-control" />
+            <span asp-validation-for="Bussines.ZipCode" class="text-danger"></span>
+
+            <label asp-for="Bussines.Street" class="control-label"></label>
+            <input asp-for="Bussines.Street" class="form-control" />
+            <span asp-validation-for="Bussines.Street" class="text-danger"></span>
+
+            <label asp-for="Bussines.HouseNumber" class="control-label"></label>
+            <input asp-for="Bussines.HouseNumber" class="form-control" />
+            <span asp-validation-for="Bussines.HouseNumber" class="text-danger"></span>
+
+            <label asp-for="Bussines.ApartmentNumber" class="control-label"></label>
+            <input asp-for="Bussines.ApartmentNumber" class="form-control" />
+            <span asp-validation-for="Bussines.ApartmentNumber" class="text-danger"></span>
+
+            <label asp-for="Bussines.Nip" class="control-label"></label>
+            <input asp-for="Bussines.Nip" class="form-control" type="text" />
+            <span asp-validation-for="Bussines.Nip" class="text-danger"></span>
+
+            <label asp-for="Bussines.Regon" class="control-label"></label>
+            <input asp-for="Bussines.Regon" class="form-control" type="text" />
+            <span asp-validation-for="Bussines.Regon" class="text-danger"></span>
+
+        </div>
+
+            <input type="submit" value="Dalej" class="btn btn-primary" />
+
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        const bussinesCheckbox = document.getElementById("bussinesCheckbox");
+        const bussinesForm = document.querySelector(".bussines");
+        const bussinesChildren = bussinesForm.children;
+
+        function showBussinesForm() {
+            if (bussinesCheckbox.checked == true) {
+                bussinesForm.style.display = "flex";
+            } else {
+                bussinesForm.style.display = "none";
+            }
+        }
+
+        bussinesCheckbox.addEventListener('click', showBussinesForm);
+    </script>
+}

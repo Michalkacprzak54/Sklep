@@ -1,0 +1,158 @@
+﻿@model SklepMVC.Models.WorkerFullOrder
+@using SklepMVC.Models
+
+@{
+    ViewData["Title"] = "Szczegóły zamówienia pracownik";
+
+    int numer = 1;
+}
+<div class="data">
+    <table class="table">
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderData.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderData.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderData.Zip_code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderData.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderData.HouseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderData.ApartmentNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderData.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderData.Status)
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.WorkerOrderData.Client)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.WorkerOrderData.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.WorkerOrderData.Zip_code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.WorkerOrderData.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.WorkerOrderData.HouseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.WorkerOrderData.ApartmentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.WorkerOrderData.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.WorkerOrderData.Status)
+            </td>
+        </tr>
+
+    </table>
+
+
+    <table class="table">
+
+        <tr>
+            <th>
+                L.P.
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderedProducts.First().Shoes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderedProducts.First().Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerOrderedProducts.First().Size)
+            </th>
+        </tr>
+
+        @foreach (var item in Model.WorkerOrderedProducts)
+        {
+            <tr>
+                <td>
+                    @numer
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shoes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+            </tr>
+            numer++;
+        }
+
+    </table>
+
+    <div class="decision">
+        @{
+            string normalizedStatus = Model.WorkerOrderData.Status;
+        }
+        @if (normalizedStatus == "W trakcie")
+    {
+
+        <button type="button" class="green" onclick="console.log('ID Order: ', @Model.WorkerOrderData.idOrder); changeOrderStatus('Wysłane', @Model.WorkerOrderData.idOrder)">Oznacz jako wysłane</button>
+        <button type="button" class="red" onclick="console.log('ID Order: ', @Model.WorkerOrderData.idOrder); changeOrderStatus('Anulowane przez pracownika', @Model.WorkerOrderData.idOrder)">Anuluj zamówienie</button>
+
+    }
+    else
+    {
+        <label asp-for="@Model.WorkerOrderData.Status">Status: @Model.WorkerOrderData.Status</label>
+    }
+    </div>
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.change-status-button').click(function () {
+            var orderId = $(this).data('order-id');
+
+            changeOrderStatus('Completed', orderId);
+        });
+    });
+
+    function changeOrderStatus(newStatus, orderId) {
+        $.ajax({
+            url: '/WorkerOrderData/ChangeOrderStatus?id=' + orderId + '&newStatus=' + newStatus,
+            type: 'POST',
+            success: function (result) {
+                console.log('Sukces - wynik: ', result);
+                if (result.success) {
+                    alert('Status zamówienia został zaktualizowany!');
+                    location.reload();
+                } else {
+                    alert('Wystąpił błąd podczas aktualizacji statusu zamówienia.');
+                }
+            },
+            error: function (error) {
+                console.log('Błąd AJAX: ', error);
+                alert('Wystąpił błąd podczas wykonywania żądania AJAX.');
+            }
+        });
+    }
+
+</script>

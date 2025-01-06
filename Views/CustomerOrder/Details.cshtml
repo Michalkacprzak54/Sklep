@@ -1,0 +1,108 @@
+﻿@model CustomerOrderDataDetails
+@{
+    ViewData["Title"] = "Szczegóły zamówienia";
+}
+<div class="order-details">
+    <h1>Zamówienie</h1>
+    <div class="dane">
+        <h2>Dane przesyłki</h2>
+        <p>Zakup w sklepie internetowym w dniu @Model.OrderData.OrderDate</p>
+        <p>Numer zamówienia: @Model.Order.idOrder - @string.Format("{0:F2}", @Model.OrderData.OrderValue) zł</p>
+
+        <div class="dane_wysylka">
+            <h2>Wysyłka</h2>
+            <p>@Model.Customer.FirstName @Model.Customer.LastName</p>
+            <p>@Model.Order.Street @Model.Order.HouseNumber/@Model.Order.ApartmentNumber</p>
+            <p>@Model.Order.Zip_code @Model.Order.City</p>
+            <p>@Model.Customer.Email</p>
+            <p>@Model.Customer.PhoneNumber</p>
+        </div>
+    </div>
+    <h1>Produkty</h1>
+    <div class="produkty">
+        @foreach (var item in Model.Products)
+        {
+            <div class="produkt">
+                <div class="zdjecie">
+                    @if (item.Photo != null)
+                    {
+
+                            <img class="zdjecie" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Photo)" alt="Zdjęcie" />
+
+                    }
+                    else
+                    {
+
+                            <img class="shoes_photo" src="~/img/brak_foto.jpg" />
+
+                    }
+                </div>
+                <div class="produkt_info">
+                    <h3>@item.Shoes</h3>
+                    <h3>@string.Format("{0:F2}", @item.Price)</h3>
+                    <p>@item.Color</p>
+                    <p>Rozmiar @item.Size</p>
+                </div>
+            </div>
+
+
+        }
+    </div>
+
+
+
+    <div class="podsumowanie">
+        <h1>Suma</h1>
+        <h2>@string.Format("{0:F2}", @Model.OrderData.OrderValue) zł</h2>
+    </div>
+
+    <div class="decision">
+        @if (Model.Order.Status == "W trakcie")
+        {
+
+            <button type="button" class="red" onclick="console.log('ID Order: ', @Model.Order.idOrder); confirmAndChangeOrderStatus('Anulowane przez klienta', @Model.Order.idOrder)">Anuluj zamówienie</button>
+
+        }
+        else
+        {
+            <label asp-for="@Model.Order.Status"><h2>Status: @Model.Order.Status</h2></label>
+        }
+    </div>
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.change-status-button').click(function () {
+            var orderId = $(this).data('order-id');
+            confirmAndChangeOrderStatus('Anulowane klient', orderId);
+        });
+    });
+
+    function confirmAndChangeOrderStatus(newStatus, orderId) {
+        var confirmationMessage = "Czy na pewno chcesz anulować zamówienie?";
+        if (confirm(confirmationMessage)) {
+            $.ajax({
+                url: '@Url.Action("ChangeOrderStatus", "CustomerOrder")',
+                type: 'POST',
+                data: { id: orderId, newStatus: newStatus },
+                success: function (result) {
+                    console.log('Sukces - wynik: ', result);
+                    if (result.success) {
+                        alert('Status zamówienia został zaktualizowany!');
+                        location.reload();
+                    } else {
+                        alert('Wystąpił błąd podczas aktualizacji statusu zamówienia.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log('Błąd AJAX: ', xhr.responseText);
+                    alert('Wystąpił błąd podczas wykonywania żądania AJAX. Szczegóły błędu: ' + xhr.responseText);
+                }
+            });
+        }
+    }
+</script>

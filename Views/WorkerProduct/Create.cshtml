@@ -1,0 +1,69 @@
+﻿@model SklepMVC.Models.Product
+
+@{
+    ViewData["Title"] = "Dodaj produkt";
+}
+<div class="create">
+    <form asp-action="Create" asp-controller="WorkerProduct" enctype="multipart/form-data" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <label asp-for="Brand" class="control-label"></label>
+        <input asp-for="Brand" class="form-control" />
+        <span asp-validation-for="Brand" class="text-danger"></span>
+
+        <label asp-for="Model" class="control-label"></label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+
+        <label asp-for="Color" class="control-label"></label>
+        <input asp-for="Color" class="form-control" />
+        <span asp-validation-for="Color" class="text-danger"></span>
+
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+
+        <label asp-for="ProductCode" class="control-label"></label>
+        <input asp-for="ProductCode" class="form-control" />
+        <span asp-validation-for="ProductCode" class="text-danger"></span>
+
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+
+        <label asp-for="IsForKids" class="control-label"></label>
+        <select asp-for="IsForKids" class="form-control">
+            <option value="false">Nie</option>
+            <option value="true">Tak</option>
+        </select>
+        <span asp-validation-for="IsForKids" class="text-danger"></span>
+
+        <label asp-for="Sex" class="control-label"></label>
+        @Html.DropDownListFor(model => model.Sex, new SelectList(ViewBag.Sex), "Płeć", new { @class = "form-control" })
+        <span asp-validation-for="Sex" class="text-danger"></span>
+
+        <label asp-for="isAvailable" class="control-label"></label>
+        <select asp-for="isAvailable" class="form-control">
+            <option value="false">Nie</option>
+            <option value="true">Tak</option>
+        </select>
+        <span asp-validation-for="isAvailable" class="text-danger"></span>
+
+        <label asp-for="Photo" class="control-label"></label>
+        <input type="file" asp-for="Photo" class="form-control" />
+        <span asp-validation-for="Photo" class="text-danger"></span>
+
+        <input type="submit" value="Dodaj" asp-action="Create" asp-controller="WorkerProduct" class="btn btn-primary" />
+
+    </form>
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
