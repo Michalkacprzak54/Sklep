@@ -1,8 +1,5 @@
 # Shoe Store – Online Shopping Platform  
 
-## 📌 Project Link  
-[Shoe Store](Insert your project link here)  
-
 ## 📖 Project Description  
 The **Shoe Store** is an e-commerce platform that allows users to browse available shoe models, add them to their shopping cart, and place orders. The application includes features for user registration and login, product management via an admin panel, and the ability for customers to leave product reviews. Employees have access to an administrative panel for managing products and orders.  
 
